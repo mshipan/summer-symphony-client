@@ -4,5 +4,5 @@
 @tailwind utilities;
 
 .navLinkClass {
-    @apply font-OpenSans font-bold uppercase hover:text-yellow-500 bg-none hover:bg-none transition duration-300;
+    @apply text-base font-OpenSans font-bold uppercase hover:text-yellow-500 bg-none hover:bg-none transition duration-300;
 }
