@@ -36,6 +36,36 @@ const Navbar = () => {
           Classes
         </NavLink>
       </li>
+      <li className="hidden md:block lg:block">
+        <img
+          src={demoUser}
+          className="w-14 rounded-full"
+          alt="User Profile Photo"
+        />
+      </li>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "text-yellow-500 navLinkClass" : "navLinkClass"
+          }
+          to="/login"
+        >
+          Login
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "text-yellow-500 navLinkClass" : "navLinkClass"
+          }
+          to="/register"
+        >
+          Register
+        </NavLink>
+      </li>
+      <li>
+        <button className="navLinkClass">LogOut</button>
+      </li>
     </>
   );
   return (
@@ -61,7 +91,7 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-10"
             >
               {navItems}
             </ul>
@@ -82,32 +112,12 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="flex items-center gap-16 px-1">{navItems}</ul>
         </div>
-        <div className="navbar-end hidden lg:flex gap-16">
+        <div className="navbar-end md:hidden lg:hidden gap-16">
           <img
             src={demoUser}
             className="w-14 rounded-full"
             alt="User Profile Photo"
           />
-
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? "text-yellow-500 navLinkClass" : "navLinkClass"
-            }
-            to="/login"
-          >
-            Login
-          </NavLink>
-
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? "text-yellow-500 navLinkClass" : "navLinkClass"
-            }
-            to="/register"
-          >
-            Register
-          </NavLink>
-
-          <button className="navLinkClass">LogOut</button>
         </div>
       </div>
     </div>
