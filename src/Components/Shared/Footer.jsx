@@ -47,7 +47,7 @@ const Footer = () => {
                 src={logo}
                 alt="Website Logo"
               />
-              <h1 className="font-Spicy flex gap-1 text-base md:text-xl">
+              <h1 className="font-Spicy flex gap-1 text-base md:text-xl text-[#c25934]">
                 <span className="text-yellow-500">Summer</span> Symphony
               </h1>
             </div>
