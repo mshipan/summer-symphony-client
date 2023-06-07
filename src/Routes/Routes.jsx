@@ -10,6 +10,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    // TODO: ERROR PAGE
     children: [
       {
         path: "/",
@@ -23,15 +24,15 @@ const router = createBrowserRouter([
         path: "/classes",
         element: <Classes></Classes>,
       },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/registration",
+        element: <Registration></Registration>,
+      },
     ],
-  },
-  {
-    path: "/login",
-    element: <Login></Login>,
-  },
-  {
-    path: "/registration",
-    element: <Registration></Registration>,
   },
 ]);
 
