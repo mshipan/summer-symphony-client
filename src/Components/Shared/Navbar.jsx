@@ -1,6 +1,8 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import demoUser from "../../assets/demo-user.png";
+import { useState } from "react";
+import "./Navbar.css";
 
 const Navbar = () => {
   const navItems = (
@@ -9,7 +11,9 @@ const Navbar = () => {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            isActive ? "text-yellow-500 navLinkClass" : "navLinkClass"
+            isActive
+              ? "text-yellow-500 navLinkClass"
+              : "md:text-white navLinkClass"
           }
         >
           Home
@@ -19,7 +23,9 @@ const Navbar = () => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            isActive ? "text-yellow-500 navLinkClass" : "navLinkClass"
+            isActive
+              ? "text-yellow-500 navLinkClass"
+              : "md:text-white navLinkClass"
           }
           to="/instructors"
         >
@@ -29,7 +35,9 @@ const Navbar = () => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            isActive ? "text-yellow-500 navLinkClass" : "navLinkClass"
+            isActive
+              ? "text-yellow-500 navLinkClass"
+              : "md:text-white navLinkClass"
           }
           to="/classes"
         >
@@ -46,7 +54,9 @@ const Navbar = () => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            isActive ? "text-yellow-500 navLinkClass" : "navLinkClass"
+            isActive
+              ? "text-yellow-500 navLinkClass"
+              : "md:text-white navLinkClass"
           }
           to="/login"
         >
@@ -56,7 +66,9 @@ const Navbar = () => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            isActive ? "text-yellow-500 navLinkClass" : "navLinkClass"
+            isActive
+              ? "text-yellow-500 navLinkClass"
+              : "md:text-white navLinkClass"
           }
           to="/register"
         >
@@ -64,13 +76,23 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <button className="navLinkClass">LogOut</button>
+        <button className="text-white navLinkClass">LogOut</button>
       </li>
     </>
   );
+
+  const [colorChange, setColorchange] = useState(false);
+  const changeNavbarColor = () => {
+    if (window.scrollY >= 80) {
+      setColorchange(true);
+    } else {
+      setColorchange(false);
+    }
+  };
+  window.addEventListener("scroll", changeNavbarColor);
   return (
-    <div className="md:w-[75%] lg:w-[75%] md:py-3 lg:py-3 mx-auto">
-      <div className="navbar bg-base-100">
+    <div className="md:w-[75%] lg:w-[75%] md:py-3 lg:py-3 mx-auto fixed md:-top-3 left-0 right-0 z-10 bg-white md:bg-transparent">
+      <div className={colorChange ? "navbar colorChange" : "navbar"}>
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -103,7 +125,7 @@ const Navbar = () => {
                 src={logo}
                 alt="Website Logo"
               />
-              <h1 className="font-Spicy flex gap-1 text-base md:text-xl">
+              <h1 className="font-Spicy flex gap-1 text-base md:text-xl text-[#c25934]">
                 <span className="text-yellow-500">Summer</span> Symphony
               </h1>
             </div>

@@ -1,0 +1,5 @@
+.navbar.colorChange {
+    background-color: #0c4b65;
+    transition: all;
+    transition-duration: 300ms;
+}

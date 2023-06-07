@@ -41,7 +41,7 @@ const Footer = () => {
 
         <div className="flex flex-col md:flex-row lg:flex-row items-start justify-evenly w-[75%] mx-auto">
           <div className="flex flex-col items-center md:items-start lg:items-start">
-            <div className="flex flex-row items-center gap-1 md:gap-3">
+            <div className="flex flex-row items-center gap-1 md:gap-3 mb-3">
               <img
                 className="w-8 md:w-11 lg:w-11"
                 src={logo}
@@ -51,11 +51,11 @@ const Footer = () => {
                 <span className="text-yellow-500">Summer</span> Symphony
               </h1>
             </div>
-            <p className="text-white max-w-xs">
+            <p className="text-white max-w-xs mb-2">
               Summer Symphony: Immerse yourself in the world of music at our
               dynamic and enriching music summer camp learning school.
             </p>
-            <div className="text-3xl text-yellow-500 cursor-pointer flex items-center gap-3">
+            <div className="text-3xl text-yellow-500 cursor-pointer flex items-center gap-3 ">
               <FaFacebook className="hover:text-white"></FaFacebook>
               <FaTwitter className="hover:text-white"></FaTwitter>
               <FaYoutube className="hover:text-white"></FaYoutube>
@@ -63,7 +63,9 @@ const Footer = () => {
             </div>
           </div>
           <div className="flex flex-col items-center md:items-start lg:items-start">
-            <h1 className="text-xl font-bold text-yellow-500">Contact Us</h1>
+            <h1 className="text-xl font-bold text-yellow-500 mb-3">
+              Contact Us
+            </h1>
             <div className="flex items-center gap-5">
               <FaMap className="text-yellow-500"></FaMap>
               <p className="text-white hover:text-yellow-500">
@@ -82,7 +84,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="flex flex-col items-center md:items-start md:w-fit lg:items-start lg:w-fit w-full">
-            <h1 className="text-xl font-bold text-yellow-500 text-center md:text-left lg:text-left">
+            <h1 className="text-xl font-bold text-yellow-500 text-center md:text-left lg:text-left mb-3">
               Usefull Links
             </h1>
             <ul className="text-center md:text-left lg:text-left">
