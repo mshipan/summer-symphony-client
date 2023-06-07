@@ -1,9 +1,45 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../../public/logo.png";
+import demoUser from "../../assets/demo-user.png";
 
 const Navbar = () => {
+  const navItems = (
+    <>
+      <li>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? "text-yellow-500 navLinkClass" : "navLinkClass"
+          }
+        >
+          Home
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "text-yellow-500 navLinkClass" : "navLinkClass"
+          }
+          to="/instructors"
+        >
+          Instructors
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "text-yellow-500 navLinkClass" : "navLinkClass"
+          }
+          to="/classes"
+        >
+          Classes
+        </NavLink>
+      </li>
+    </>
+  );
   return (
-    <div className="md:w-[75%] lg:w-[75%] mx-auto">
+    <div className="md:w-[75%] lg:w-[75%] md:py-3 lg:py-3 mx-auto">
       <div className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
@@ -27,23 +63,7 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li>
+              {navItems}
             </ul>
           </div>
           <Link to="/" className=" normal-case text-xl">
@@ -60,30 +80,34 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li tabIndex={0}>
-              <details>
-                <summary>Parent</summary>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </details>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
-          </ul>
+          <ul className="flex items-center gap-16 px-1">{navItems}</ul>
         </div>
-        <div className="navbar-end">
-          <a className="btn">Button</a>
+        <div className="navbar-end hidden lg:flex gap-16">
+          <img
+            src={demoUser}
+            className="w-14 rounded-full"
+            alt="User Profile Photo"
+          />
+
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "text-yellow-500 navLinkClass" : "navLinkClass"
+            }
+            to="/login"
+          >
+            Login
+          </NavLink>
+
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "text-yellow-500 navLinkClass" : "navLinkClass"
+            }
+            to="/register"
+          >
+            Register
+          </NavLink>
+
+          <button className="navLinkClass">LogOut</button>
         </div>
       </div>
     </div>
