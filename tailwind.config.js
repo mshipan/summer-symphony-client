@@ -9,6 +9,7 @@ export default {
       },
       backgroundImage: {
         "school-bg": "url('./src/assets/piano.jpg')",
+        piano: "url('./src/assets/playingpiano.jpg')",
       },
     },
   },
