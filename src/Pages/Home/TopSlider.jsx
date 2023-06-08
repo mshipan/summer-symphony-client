@@ -27,19 +27,19 @@ const TopSlider = () => {
               <img
                 src={banner1}
                 alt="Banner image"
-                className="w-full h-[50rem]"
+                className="w-full h-[20rem] md:h-[50rem] lg:h-[50rem]"
               />
               <div className="bg-black bg-opacity-30 w-full h-[50rem] absolute top-0"></div>
             </div>
             <div className="absolute left-0 right-0 top-1/3">
               <div className="flex flex-col items-center">
-                <h3 className="font-Spicy text-3xl text-yellow-500">
+                <h3 className="font-Spicy text-xl md:text-3xl lg:text-3xl text-yellow-500">
                   Playing Guitar
                 </h3>
-                <h1 className="font-Spicy text-7xl text-white mb-7">
+                <h1 className="font-Spicy text-5xl md:text-7xl lg:text-7xl text-white mb-0 md:mb-7 lg:mb-7">
                   Really Easy
                 </h1>
-                <p className="text-white font-OpenSans max-w-lg text-center mb-16">
+                <p className="text-white font-OpenSans max-w-lg text-center mb-0 md:mb-16 lg:mb-16">
                   Discover the joy of playing guitar at Summer Symphony&apos;s
                   music summer camp, where learning meets harmony.
                 </p>
@@ -56,17 +56,19 @@ const TopSlider = () => {
               <img
                 src={banner2}
                 alt="Banner image"
-                className="w-full h-[50rem]"
+                className="w-full h-[20rem] md:h-[50rem] lg:h-[50rem]"
               />
               <div className="bg-black bg-opacity-30 w-full h-[50rem] absolute top-0"></div>
             </div>
             <div className="absolute left-0 right-0 top-1/3">
               <div className="flex flex-col items-center">
-                <h3 className="font-Spicy text-3xl text-yellow-500">Start</h3>
-                <h1 className="font-Spicy text-7xl text-white mb-7">
+                <h3 className="font-Spicy text-xl md:text-3xl lg:text-3xl text-yellow-500">
+                  Start
+                </h3>
+                <h1 className="font-Spicy text-5xl md:text-7xl lg:text-7xl text-white mb-0 md:mb-7 lg:mb-7">
                   With a Note
                 </h1>
-                <p className="text-white font-OpenSans max-w-lg text-center mb-16">
+                <p className="text-white font-OpenSans max-w-lg text-center mb-0 md:mb-16 lg:mb-16">
                   Unleash your inner virtuoso as you learn violin at Summer
                   Symphony&apos;s music summer camp, where melodies come alive.
                 </p>
@@ -83,17 +85,19 @@ const TopSlider = () => {
               <img
                 src={banner3}
                 alt="Banner image"
-                className="w-full h-[50rem]"
+                className="w-full h-[20rem] md:h-[50rem] lg:h-[50rem]"
               />
               <div className="bg-black bg-opacity-30 w-full h-[50rem] absolute top-0"></div>
             </div>
             <div className="absolute left-0 right-0 top-1/3">
               <div className="flex flex-col items-center">
-                <h3 className="font-Spicy text-3xl text-yellow-500">Music</h3>
-                <h1 className="font-Spicy text-7xl text-white mb-7">
+                <h3 className="font-Spicy text-xl md:text-3xl lg:text-3xl text-yellow-500">
+                  Music
+                </h3>
+                <h1 className="font-Spicy text-5xl md:text-7xl lg:text-7xl text-white mb-0 md:mb-7 lg:mb-7">
                   For Everyone
                 </h1>
-                <p className="text-white font-OpenSans max-w-lg text-center mb-16">
+                <p className="text-white font-OpenSans max-w-lg text-center mb-0 md:mb-16 lg:mb-16">
                   Unlock the keys to musical enchantment with piano lessons at
                   Summer Symphony&apos;s music summer camp, where talent
                   resonates.

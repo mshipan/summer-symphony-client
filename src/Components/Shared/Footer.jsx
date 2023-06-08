@@ -51,7 +51,7 @@ const Footer = () => {
                 <span className="text-yellow-500">Summer</span> Symphony
               </h1>
             </div>
-            <p className="text-white max-w-xs mb-2">
+            <p className="text-white max-w-xs mb-2 md:text-left text-center">
               Summer Symphony: Immerse yourself in the world of music at our
               dynamic and enriching music summer camp learning school.
             </p>

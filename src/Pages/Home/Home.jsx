@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet";
 import TopSlider from "./TopSlider";
+import PopularClasses from "./PopularClasses";
 
 const Home = () => {
   return (
@@ -8,6 +9,7 @@ const Home = () => {
         <title>Home | Summer Symphony</title>
       </Helmet>
       <TopSlider></TopSlider>
+      <PopularClasses></PopularClasses>
     </div>
   );
 };
