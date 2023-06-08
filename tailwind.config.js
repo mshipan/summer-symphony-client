@@ -7,6 +7,9 @@ export default {
         Spicy: ["Spicy Rice", "cursive"],
         OpenSans: ["Open Sans", "sans-serif"],
       },
+      backgroundImage: {
+        "school-bg": "url('./src/assets/piano.jpg')",
+      },
     },
   },
   plugins: [require("daisyui")],
