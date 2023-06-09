@@ -3,8 +3,10 @@ import { Helmet } from "react-helmet";
 import loginAnimation from "../../assets/login-animation.gif";
 import { FcGoogle } from "react-icons/fc";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const {
@@ -13,10 +15,22 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  const { signIn } = useContext(AuthContext);
+
   const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = (data) => {
-    console.log(data);
+    signIn(data.email, data.password).then((result) => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "LoggedIn Successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    });
   };
 
   const togglePasswordVisibility = () => {

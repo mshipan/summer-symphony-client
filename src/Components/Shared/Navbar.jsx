@@ -1,10 +1,18 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import demoUser from "../../assets/demo-user.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./Navbar.css";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.error(error));
+  };
   const navItems = (
     <>
       <li>
@@ -44,40 +52,52 @@ const Navbar = () => {
           Classes
         </NavLink>
       </li>
-      <li className="hidden md:block lg:block">
-        <img
-          src={demoUser}
-          className="w-14 rounded-full"
-          alt="User Profile Photo"
-        />
-      </li>
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "text-yellow-500 navLinkClass"
-              : "md:text-white navLinkClass"
-          }
-          to="/login"
-        >
-          Login
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "text-yellow-500 navLinkClass"
-              : "md:text-white navLinkClass"
-          }
-          to="/register"
-        >
-          Register
-        </NavLink>
-      </li>
-      <li>
-        <button className="text-white navLinkClass">LogOut</button>
-      </li>
+      {user ? (
+        <>
+          <li className="hidden md:block lg:block">
+            <img
+              src={demoUser}
+              className="w-14 rounded-full"
+              alt="User Profile Photo"
+            />
+          </li>
+          <li>
+            <button
+              onClick={handleLogOut}
+              className=" md:text-white lg:text-white navLinkClass"
+            >
+              LogOut
+            </button>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "text-yellow-500 navLinkClass"
+                  : "md:text-white navLinkClass"
+              }
+              to="/login"
+            >
+              Login
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "text-yellow-500 navLinkClass"
+                  : "md:text-white navLinkClass"
+              }
+              to="/register"
+            >
+              Register
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
 
@@ -135,11 +155,13 @@ const Navbar = () => {
           <ul className="flex items-center gap-16 px-1">{navItems}</ul>
         </div>
         <div className="navbar-end md:hidden lg:hidden gap-16">
-          <img
-            src={demoUser}
-            className="w-14 rounded-full"
-            alt="User Profile Photo"
-          />
+          {user && (
+            <img
+              src={demoUser}
+              className="w-14 rounded-full"
+              alt="User Profile Photo"
+            />
+          )}
         </div>
       </div>
     </div>

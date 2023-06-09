@@ -3,8 +3,9 @@ import { Helmet } from "react-helmet";
 import registerAnimation from "../../assets/register-animation.gif";
 import { FcGoogle } from "react-icons/fc";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
 const Registration = () => {
   const {
     register,
@@ -13,10 +14,17 @@ const Registration = () => {
     formState: { errors },
   } = useForm();
 
+  const { createUser } = useContext(AuthContext);
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    createUser(data.email, data.password).then((result) => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+    });
+  };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
