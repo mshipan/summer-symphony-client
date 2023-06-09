@@ -6,3 +6,6 @@
 .navLinkClass {
     @apply text-base font-OpenSans font-bold uppercase hover:text-yellow-500 bg-none hover:bg-none transition duration-300;
 }
+.dashboardNav {
+    @apply flex items-center gap-2 text-base font-OpenSans font-bold uppercase hover:text-yellow-500 bg-none hover:bg-none transition duration-300;
+}
