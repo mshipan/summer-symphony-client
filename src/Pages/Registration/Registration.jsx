@@ -4,6 +4,7 @@ import registerAnimation from "../../assets/register-animation.gif";
 import { FcGoogle } from "react-icons/fc";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 const Registration = () => {
   const {
     register,
@@ -170,6 +171,16 @@ const Registration = () => {
               <button className="btn btn-circle btn-primary">
                 <FcGoogle className="text-2xl"></FcGoogle>
               </button>
+            </div>
+            <div className="mt-5">
+              <p>
+                Already have an account?{" "}
+                <Link to="/login">
+                  <span className="text-blue-500 hover:text-blue-900 hover:underline italic">
+                    Please Login.
+                  </span>
+                </Link>
+              </p>
             </div>
           </div>
         </div>
