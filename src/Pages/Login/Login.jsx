@@ -15,7 +15,9 @@ const Login = () => {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -92,12 +94,12 @@ const Login = () => {
                 <input
                   className="bg-[#c25934] hover:bg-[#0c4b65] px-5 py-2 font-OpenSans uppercase font-bold text-white  transition duration-300 rounded-sm w-full cursor-pointer"
                   type="submit"
-                  value="Register"
+                  value="Login"
                 />
               </div>
             </form>
             <div className="divider">OR</div>
-            <p className="text-left mb-2">Register With -</p>
+            <p className="text-left mb-2">Login With -</p>
             <div className="flex justify-center">
               <button className="btn btn-circle btn-primary">
                 <FcGoogle className="text-2xl"></FcGoogle>
