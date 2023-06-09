@@ -1,15 +1,9 @@
-import { useEffect, useState } from "react";
 import PopularInstructorCard from "../../Components/PopularInstructorCard";
+import useInstructor from "../../Hooks/useInstructor";
 
 const PopularInstructors = () => {
-  const [popularInstructors, setPopularInstructors] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:5000/popular-instructors")
-      .then((res) => res.json())
-      .then((data) => {
-        setPopularInstructors(data);
-      });
-  }, []);
+  const [instructors] = useInstructor();
+
   return (
     <div className="my-20 md:my-32 lg:my-32 w-[75%] mx-auto flex flex-col items-center">
       <div className="flex flex-col items-center mb-10">
@@ -24,10 +18,10 @@ const PopularInstructors = () => {
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5">
-        {popularInstructors.map((popularInstructor) => (
+        {instructors.map((instructor) => (
           <PopularInstructorCard
-            key={popularInstructor._id}
-            popularInstructor={popularInstructor}
+            key={instructor._id}
+            instructor={instructor}
           ></PopularInstructorCard>
         ))}
       </div>

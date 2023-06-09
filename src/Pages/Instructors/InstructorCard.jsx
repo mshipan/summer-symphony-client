@@ -1,12 +1,13 @@
-const PopularInstructorCard = ({ instructor }) => {
+const InstructorCard = ({ instructor }) => {
   const {
     cardImage,
     Image,
+    instructorName,
     className,
     NumberofClasses,
-    instructorName,
     AvailableSeats,
     Students,
+    email,
   } = instructor;
   return (
     <div className="w-full md:w-96 lg:w-96 rounded-lg bg-base-200">
@@ -31,8 +32,11 @@ const PopularInstructorCard = ({ instructor }) => {
           {instructorName}
         </h1>
         <h3 className="text-base font-bold font-OpenSans mb-1">
-          Class: {className}
+          Email: {email}
         </h3>
+        <p className="text-base font-bold font-OpenSans mb-1">
+          Class: {className}
+        </p>
         <p className="text-base font-bold font-OpenSans mb-1">
           Number of Classes: {NumberofClasses}
         </p>
@@ -47,4 +51,4 @@ const PopularInstructorCard = ({ instructor }) => {
   );
 };
 
-export default PopularInstructorCard;
+export default InstructorCard;
