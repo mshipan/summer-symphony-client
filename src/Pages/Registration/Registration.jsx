@@ -87,7 +87,12 @@ const Registration = () => {
                 <div className="flex items-center input input-bordered border-yellow-500 w-full">
                   <input
                     type={showPassword ? "text" : "password"}
-                    {...register("password", { required: true })}
+                    {...register("password", {
+                      required: true,
+                      minLength: 6,
+                      pattern:
+                        /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+                    })}
                     name="password"
                     placeholder="Type your password"
                     className="w-full focus:outline-none"
@@ -100,7 +105,14 @@ const Registration = () => {
                   </span>
                 </div>
                 {errors.password && (
-                  <span className="text-red-500">Password is required</span>
+                  <span className="text-red-600 w-56">
+                    {errors.password.type === "required" &&
+                      "Password is required"}
+                    {errors.password.type === "minLength" &&
+                      "Password must be at least 6 characters long"}
+                    {errors.password.type === "pattern" &&
+                      "Password must contain at least one uppercase, one lowercase letter, one number and one special character"}
+                  </span>
                 )}
               </div>
               <div className="form-control w-full max-w-xs">
