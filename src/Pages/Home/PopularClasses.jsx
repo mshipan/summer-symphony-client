@@ -1,15 +1,8 @@
-import { useState, useEffect } from "react";
 import PopularClassesCard from "../../Components/PopularClassesCard";
+import useClass from "../../Hooks/useClass";
 
 const PopularClasses = () => {
-  const [popularClasses, setPopularClasses] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:5000/popular-classes")
-      .then((res) => res.json())
-      .then((data) => {
-        setPopularClasses(data);
-      });
-  }, []);
+  const [classes] = useClass();
   return (
     <div className="my-20 md:my-32 lg:my-32 w-[75%] mx-auto flex flex-col items-center">
       <div className="flex flex-col items-center mb-10">
@@ -23,7 +16,7 @@ const PopularClasses = () => {
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5">
-        {popularClasses.map((popularClass) => (
+        {classes.map((popularClass) => (
           <PopularClassesCard
             key={popularClass._id}
             popularClass={popularClass}

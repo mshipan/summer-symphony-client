@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
@@ -30,7 +30,7 @@ const DashboardLayout = () => {
             </label>
           </div>
 
-          <Link to="/" className=" normal-case text-xl flex-1 px-2 mx-2">
+          <div className=" normal-case text-xl flex-1 px-2 mx-2">
             <div className="flex flex-row items-center gap-1 md:gap-3">
               <img
                 className="w-8 md:w-11 lg:w-11"
@@ -41,7 +41,7 @@ const DashboardLayout = () => {
                 <span className="text-yellow-500">Summer</span> Symphony
               </h1>
             </div>
-          </Link>
+          </div>
           <div className="flex-none hidden lg:block">
             <ul className="flex flex-row items-center gap-7">
               {/* Navbar menu content here */}
