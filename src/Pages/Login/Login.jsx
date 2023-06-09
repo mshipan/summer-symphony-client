@@ -4,7 +4,7 @@ import loginAnimation from "../../assets/login-animation.gif";
 import { FcGoogle } from "react-icons/fc";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 
@@ -16,8 +16,12 @@ const Login = () => {
   } = useForm();
 
   const { signIn } = useContext(AuthContext);
-
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const onSubmit = (data) => {
     signIn(data.email, data.password).then((result) => {
@@ -30,6 +34,7 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500,
       });
+      navigate(from, { replace: true });
     });
   };
 

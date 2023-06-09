@@ -4,17 +4,20 @@ import registerAnimation from "../../assets/register-animation.gif";
 import { FcGoogle } from "react-icons/fc";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 const Registration = () => {
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -23,6 +26,20 @@ const Registration = () => {
     createUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
       console.log(loggedUser);
+      updateUserProfile(data.name, data.photoURL)
+        .then(() => {
+          console.log("Updated Profile Info");
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Registration Successfull",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          reset();
+          navigate("/");
+        })
+        .catch((error) => console.error(error));
     });
   };
 
@@ -156,12 +173,12 @@ const Registration = () => {
                 </label>
                 <input
                   type="text"
-                  {...register("photoUrl", { required: true })}
-                  name="photoUrl"
+                  {...register("photoURL", { required: true })}
+                  name="photoURL"
                   placeholder="Your Photo URL"
                   className="input input-bordered border-yellow-500 w-full max-w-xs focus:outline-none"
                 />
-                {errors.photoUrl && (
+                {errors.photoURL && (
                   <span className="text-red-500">Photo URL is required</span>
                 )}
               </div>

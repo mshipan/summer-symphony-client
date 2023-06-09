@@ -1,6 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import demoUser from "../../assets/demo-user.png";
 import { useContext, useState } from "react";
 import "./Navbar.css";
 import { AuthContext } from "../../Providers/AuthProvider";
@@ -56,7 +55,7 @@ const Navbar = () => {
         <>
           <li className="hidden md:block lg:block">
             <img
-              src={demoUser}
+              src={user?.photoURL}
               className="w-14 rounded-full"
               alt="User Profile Photo"
             />
@@ -157,7 +156,7 @@ const Navbar = () => {
         <div className="navbar-end md:hidden lg:hidden gap-16">
           {user && (
             <img
-              src={demoUser}
+              src={user?.photoURL}
               className="w-14 rounded-full"
               alt="User Profile Photo"
             />
