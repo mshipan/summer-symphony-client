@@ -1,8 +1,14 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
-import { FaHome, FaUserGraduate, FaBookReader } from "react-icons/fa";
+import {
+  FaHome,
+  FaUserGraduate,
+  FaBookReader,
+  FaRegListAlt,
+  FaCheckSquare,
+} from "react-icons/fa";
 
 const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
@@ -60,11 +66,37 @@ const DashboardLayout = () => {
         </div>
         {/* Page content here */}
         Content
+        <Outlet></Outlet>
       </div>
       <div className="drawer-side">
         <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
-        <ul className=" flex flex-col gap-5 p-16 w-80 h-full bg-base-200">
+        <ul className=" flex flex-col gap-5 py-20 px-5 w-80 h-full bg-base-200">
           {/* Sidebar content here */}
+          <li>
+            <NavLink
+              to="my-selected-classes"
+              className={({ isActive }) =>
+                isActive
+                  ? " text-yellow-500 dashboardNav"
+                  : "md:text-black dashboardNav"
+              }
+            >
+              <FaRegListAlt /> My Selected Classes
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="my-enrolled-classes"
+              className={({ isActive }) =>
+                isActive
+                  ? " text-yellow-500 dashboardNav"
+                  : "md:text-black dashboardNav"
+              }
+            >
+              <FaCheckSquare /> My Enrolled Classes
+            </NavLink>
+          </li>
+          <div className="divider"></div>
           <li>
             <NavLink
               to="/"
