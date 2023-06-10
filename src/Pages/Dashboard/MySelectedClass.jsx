@@ -1,9 +1,38 @@
 import { Helmet } from "react-helmet";
 import useSelectClass from "../../Hooks/useSelectClass";
 import { FaTrash, FaMoneyCheck } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const MySelectedClass = () => {
-  const [selectClass] = useSelectClass();
+  const [selectClass, refetch] = useSelectClass();
+
+  const handleDelete = (sclass) => {
+    Swal.fire({
+      title: "Are you sure to delete?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/selectClass/${sclass._id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              refetch();
+              Swal.fire(
+                "Deleted!",
+                "Your Class has been deleted successfully.",
+                "success"
+              );
+            }
+          });
+      }
+    });
+  };
   return (
     <div className="w-[75%] mx-auto">
       <Helmet>
@@ -52,6 +81,7 @@ const MySelectedClass = () => {
                 <td>
                   <div className="flex items-center justify-center gap-5">
                     <button
+                      onClick={() => handleDelete(sclass)}
                       title="Delete"
                       className="p-3 bg-red-400 hover:bg-red-700 text-black hover:text-white transition duration-300 "
                     >

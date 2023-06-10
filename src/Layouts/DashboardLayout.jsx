@@ -52,7 +52,7 @@ const DashboardLayout = () => {
             <ul className="flex flex-row items-center gap-7">
               {/* Navbar menu content here */}
               <li>
-                <p>{user.displayName}</p>
+                <p>Hello, {user.displayName}</p>
               </li>
               <li>
                 <img
