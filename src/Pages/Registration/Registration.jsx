@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet";
 import registerAnimation from "../../assets/register-animation.gif";
-import { FcGoogle } from "react-icons/fc";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 const Registration = () => {
   const {
     register,
@@ -28,16 +28,32 @@ const Registration = () => {
       console.log(loggedUser);
       updateUserProfile(data.name, data.photoURL)
         .then(() => {
-          console.log("Updated Profile Info");
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Registration Successfull",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          reset();
-          navigate("/");
+          const newUser = {
+            name: data.name,
+            email: data.email,
+            photo: data.photoURL,
+          };
+          fetch("http://localhost:5000/users", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(newUser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Registration Successfull",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                reset();
+                navigate("/");
+              }
+            });
         })
         .catch((error) => console.error(error));
     });
@@ -192,11 +208,7 @@ const Registration = () => {
             </form>
             <div className="divider">OR</div>
             <p className="text-left mb-2">Register With -</p>
-            <div className="flex justify-center">
-              <button className="btn btn-circle btn-primary">
-                <FcGoogle className="text-2xl"></FcGoogle>
-              </button>
-            </div>
+            <SocialLogin></SocialLogin>
             <div className="mt-5">
               <p>
                 Already have an account?{" "}

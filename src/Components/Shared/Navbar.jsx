@@ -51,18 +51,20 @@ const Navbar = () => {
           Classes
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "text-yellow-500 navLinkClass"
-              : "md:text-white navLinkClass"
-          }
-          to="/dashboard"
-        >
-          Dashboard
-        </NavLink>
-      </li>
+      {user && (
+        <li>
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "text-yellow-500 navLinkClass"
+                : "md:text-white navLinkClass"
+            }
+            to="/dashboard"
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )}
       {user ? (
         <>
           <li className="hidden md:block lg:block">

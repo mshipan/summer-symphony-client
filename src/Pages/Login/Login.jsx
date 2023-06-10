@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet";
 import loginAnimation from "../../assets/login-animation.gif";
-import { FcGoogle } from "react-icons/fc";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 const Login = () => {
   const {
@@ -17,6 +17,7 @@ const Login = () => {
 
   const { signIn } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -24,18 +25,22 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
 
   const onSubmit = (data) => {
-    signIn(data.email, data.password).then((result) => {
-      const loggedUser = result.user;
-      console.log(loggedUser);
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "LoggedIn Successfully",
-        showConfirmButton: false,
-        timer: 1500,
+    signIn(data.email, data.password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "LoggedIn Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        setErrorMessage(error.message);
       });
-      navigate(from, { replace: true });
-    });
   };
 
   const togglePasswordVisibility = () => {
@@ -67,6 +72,7 @@ const Login = () => {
           </div>
           <div>
             <form onSubmit={handleSubmit(onSubmit)}>
+              <p className="text-red-600">{errorMessage}</p>
               <div className="form-control w-full max-w-xs">
                 <label className="label">
                   <span className="label-text">Email:</span>
@@ -119,11 +125,7 @@ const Login = () => {
             </form>
             <div className="divider">OR</div>
             <p className="text-left mb-2">Login With -</p>
-            <div className="flex justify-center">
-              <button className="btn btn-circle btn-primary">
-                <FcGoogle className="text-2xl"></FcGoogle>
-              </button>
-            </div>
+            <SocialLogin></SocialLogin>
             <div className="mt-5">
               <p>
                 Don&apos;t have an account?{" "}
