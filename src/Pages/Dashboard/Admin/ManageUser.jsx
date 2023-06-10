@@ -5,7 +5,9 @@ import { FaUserShield, FaUserTie } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 const ManageUser = () => {
-  const [disableButtons, setDisableButtons] = useState(false);
+  const [disabledAdminButtonId, setDisabledAdminButtonId] = useState(null);
+  const [disabledInstructorButtonId, setDisabledInstructorButtonId] =
+    useState(null);
   const { data: users = [], refetch } = useQuery(["users"], async () => {
     const res = await fetch("http://localhost:5000/users");
     return res.json();
@@ -30,8 +32,9 @@ const ManageUser = () => {
             timer: 1500,
           });
           refetch();
-          setDisableButtons(true);
+          setDisabledAdminButtonId(user._id);
         }
+        setDisabledInstructorButtonId(null);
       });
   };
 
@@ -50,13 +53,14 @@ const ManageUser = () => {
           Swal.fire({
             position: "top-end",
             icon: "success",
-            title: `${user.name} is admin now`,
+            title: `${user.name} is Instructor now`,
             showConfirmButton: false,
             timer: 1500,
           });
           refetch();
-          setDisableButtons(true);
+          setDisabledInstructorButtonId(user._id);
         }
+        setDisabledAdminButtonId(null);
       });
   };
 
@@ -110,7 +114,7 @@ const ManageUser = () => {
                     <button
                       onClick={() => handleMakeAdmin(user)}
                       title="Make Admin"
-                      disabled={disableButtons}
+                      disabled={disabledAdminButtonId === user._id}
                       className="p-3 bg-red-400 hover:bg-red-700 text-black hover:text-white transition duration-300 "
                     >
                       <FaUserShield />
@@ -118,7 +122,7 @@ const ManageUser = () => {
                     <button
                       onClick={() => handleMakeInstructor(user)}
                       title="Make Instructor"
-                      disabled={disableButtons}
+                      disabled={disabledInstructorButtonId === user._id}
                       className="p-3 bg-yellow-400 hover:bg-yellow-700 text-black hover:text-white transition duration-300 "
                     >
                       <FaUserTie />
