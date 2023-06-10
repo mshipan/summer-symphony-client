@@ -8,10 +8,15 @@ import {
   FaBookReader,
   FaRegListAlt,
   FaCheckSquare,
+  FaUsersCog,
+  FaChalkboardTeacher,
 } from "react-icons/fa";
 
 const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
+  // TODO
+  const isAdmin = true;
+  const isStudent = false;
   return (
     <div className="drawer md:drawer-open lg:drawer-open">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -71,30 +76,67 @@ const DashboardLayout = () => {
         <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
         <ul className=" flex flex-col gap-5 py-20 px-5 w-80 h-full bg-base-200">
           {/* Sidebar content here */}
-          <li>
-            <NavLink
-              to="my-selected-classes"
-              className={({ isActive }) =>
-                isActive
-                  ? " text-yellow-500 dashboardNav"
-                  : "md:text-black dashboardNav"
-              }
-            >
-              <FaRegListAlt /> My Selected Classes
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="my-enrolled-classes"
-              className={({ isActive }) =>
-                isActive
-                  ? " text-yellow-500 dashboardNav"
-                  : "md:text-black dashboardNav"
-              }
-            >
-              <FaCheckSquare /> My Enrolled Classes
-            </NavLink>
-          </li>
+
+          {isAdmin && (
+            <>
+              <li>
+                <NavLink
+                  to="manage-classes"
+                  className={({ isActive }) =>
+                    isActive
+                      ? " text-yellow-500 dashboardNav"
+                      : "md:text-black dashboardNav"
+                  }
+                >
+                  <FaChalkboardTeacher /> Manage Classes
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="manage-users"
+                  className={({ isActive }) =>
+                    isActive
+                      ? " text-yellow-500 dashboardNav"
+                      : "md:text-black dashboardNav"
+                  }
+                >
+                  <FaUsersCog /> Manage Users
+                </NavLink>
+              </li>
+            </>
+          )}
+
+          {isStudent && (
+            <>
+              <li>
+                <NavLink
+                  to="my-selected-classes"
+                  className={({ isActive }) =>
+                    isActive
+                      ? " text-yellow-500 dashboardNav"
+                      : "md:text-black dashboardNav"
+                  }
+                >
+                  <FaRegListAlt /> My Selected Classes
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="my-enrolled-classes"
+                  className={({ isActive }) =>
+                    isActive
+                      ? " text-yellow-500 dashboardNav"
+                      : "md:text-black dashboardNav"
+                  }
+                >
+                  <FaCheckSquare /> My Enrolled Classes
+                </NavLink>
+              </li>
+            </>
+          )}
+
+          {/* students */}
+
           <div className="divider"></div>
           <li>
             <NavLink
