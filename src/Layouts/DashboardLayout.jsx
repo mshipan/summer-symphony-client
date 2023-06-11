@@ -1,7 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
 import logo from "../assets/logo.png";
-import { useContext } from "react";
-import { AuthContext } from "../Providers/AuthProvider";
 import {
   FaHome,
   FaUserGraduate,
@@ -11,12 +9,16 @@ import {
   FaUsersCog,
   FaChalkboardTeacher,
 } from "react-icons/fa";
+import useRoles from "../Hooks/useRoles";
+import useAuth from "../Hooks/useAuth";
 
 const DashboardLayout = () => {
-  const { user } = useContext(AuthContext);
-  // TODO
-  const isAdmin = true;
-  const isStudent = false;
+  const { user } = useAuth();
+  const [roles] = useRoles();
+  const isAdmin = roles?.isAdmin;
+  const isStudent = roles?.isStudent;
+  // TODO: isInstructor
+
   return (
     <div className="drawer md:drawer-open lg:drawer-open">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -53,11 +55,17 @@ const DashboardLayout = () => {
               </h1>
             </div>
           </div>
-          <div className="flex-none hidden lg:block">
+          <div className="flex-none hidden md:block lg:block">
             <ul className="flex flex-row items-center gap-7">
               {/* Navbar menu content here */}
               <li>
-                <p>Hello, {user.displayName}</p>
+                <p className="flex flex-col items-end">
+                  Hello, {user.displayName}
+                  {isAdmin && <small className="italic">Admin Dashboard</small>}
+                  {isStudent && (
+                    <small className="italic">Student Dashboard</small>
+                  )}
+                </p>
               </li>
               <li>
                 <img
