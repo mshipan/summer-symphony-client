@@ -13,6 +13,7 @@ const useSelectClass = () => {
       return response.data;
     },
   });
+
   return [selectClass, refetch];
 };
 

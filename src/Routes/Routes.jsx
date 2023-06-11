@@ -14,12 +14,12 @@ import AddaClass from "../Pages/Dashboard/Instructor/AddaClass";
 import MyClasses from "../Pages/Dashboard/Instructor/MyClasses";
 import ManageClass from "../Pages/Dashboard/Admin/ManageClass";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import Payment from "../Pages/Dashboard/Payment";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
-    // TODO: ERROR PAGE
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
@@ -67,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: "my-enrolled-classes",
         element: <MyEnrolledClass></MyEnrolledClass>,
+      },
+      {
+        path: "payment/:id",
+        element: <Payment></Payment>,
       },
       {
         path: "add-a-class",

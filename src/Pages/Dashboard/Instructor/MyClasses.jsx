@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import { FaEdit, FaStickyNote } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
 import useCreateClass from "../../../Hooks/useCreateClass";
 import useAuth from "../../../Hooks/useAuth";
 
@@ -31,7 +31,8 @@ const MyClasses = () => {
               <th>Class Name</th>
               <th>Enrolled Students</th>
               <th>Status</th>
-              <th className="text-center">Feedback / Update</th>
+              <th>Feedback</th>
+              <th className="text-center"> Update</th>
             </tr>
           </thead>
           <tbody>
@@ -57,16 +58,10 @@ const MyClasses = () => {
                   <h1 className="font-semibold">{cls.status}</h1>
                 </td>
                 <td>
+                  <h1 className="font-semibold">Feedback</h1>
+                </td>
+                <td>
                   <div className="flex items-center justify-center gap-5">
-                    <button
-                      //   onClick={() => handleMakeAdmin(user)}
-                      title="Feedback"
-                      //   disabled={disabledAdminButtonId === user._id}
-                      className="p-3 bg-red-400 hover:bg-red-700 text-black hover:text-white transition duration-300 "
-                    >
-                      {/* <FaUserShield /> */}
-                      <FaStickyNote></FaStickyNote>
-                    </button>
                     <button
                       //   onClick={() => handleMakeInstructor(user)}
                       title="Update"

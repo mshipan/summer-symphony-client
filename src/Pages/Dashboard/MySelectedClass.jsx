@@ -2,9 +2,11 @@ import { Helmet } from "react-helmet";
 import useSelectClass from "../../Hooks/useSelectClass";
 import { FaTrash, FaMoneyCheck } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MySelectedClass = () => {
   const [selectClass, refetch] = useSelectClass();
+  console.log(selectClass);
 
   const handleDelete = (sclass) => {
     Swal.fire({
@@ -64,19 +66,19 @@ const MySelectedClass = () => {
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
-                        <img src={sclass.Image} alt="Class Image" />
+                        <img src={sclass.image} alt="Class Image" />
                       </div>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <h1 className="font-semibold">{sclass.Name}</h1>
+                  <h1 className="font-semibold">{sclass.name}</h1>
                 </td>
                 <td>
-                  <h1 className="font-semibold">{sclass.InstructorName}</h1>
+                  <h1 className="font-semibold">{sclass.instructorName}</h1>
                 </td>
                 <td>
-                  <h1 className="font-semibold">${sclass.Price}</h1>
+                  <h1 className="font-semibold">${sclass.price}</h1>
                 </td>
                 <td>
                   <div className="flex items-center justify-center gap-5">
@@ -87,12 +89,14 @@ const MySelectedClass = () => {
                     >
                       <FaTrash />
                     </button>
-                    <button
-                      title="Pay"
-                      className="p-3 bg-yellow-400 hover:bg-yellow-700 text-black hover:text-white transition duration-300 "
-                    >
-                      <FaMoneyCheck />
-                    </button>
+                    <Link to={`/dashboard/payment/${sclass._id}`}>
+                      <button
+                        title="Pay"
+                        className="p-3 bg-yellow-400 hover:bg-yellow-700 text-black hover:text-white transition duration-300 "
+                      >
+                        <FaMoneyCheck />
+                      </button>
+                    </Link>
                   </div>
                 </td>
               </tr>
