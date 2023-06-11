@@ -1,24 +1,18 @@
 import { Helmet } from "react-helmet";
-import { FaEdit, FaStickyNote } from "react-icons/fa";
 import useCreateClass from "../../../Hooks/useCreateClass";
-import useAuth from "../../../Hooks/useAuth";
+import { FaBan, FaCheckSquare, FaComment } from "react-icons/fa";
 
-const MyClasses = () => {
+const ManageClass = () => {
   const [createClass] = useCreateClass();
   console.log(createClass);
-  const { user } = useAuth();
-  console.log(user);
-  const myClass = createClass.filter(
-    (cls) => cls.instructorEmail === user.email
-  );
   return (
     <div className="w-[75%] mx-auto">
       <Helmet>
-        <title>My Classes | Dashboard</title>
+        <title>Manage Classes | Dashboard</title>
       </Helmet>
       <div className="my-8">
         <h1 className="text-4xl font-OpenSans font-bold text-center">
-          My Classes
+          Manage Classes
         </h1>
       </div>
       <div className="overflow-x-auto">
@@ -29,13 +23,16 @@ const MyClasses = () => {
               <th>#</th>
               <th>Class Image</th>
               <th>Class Name</th>
-              <th>Enrolled Students</th>
+              <th>Instructor Name</th>
+              <th>Instructor Email</th>
+              <th>Available Seats</th>
+              <th>Price</th>
               <th>Status</th>
-              <th className="text-center">Feedback / Update</th>
+              <th className="text-center">Approve / Deny / Send Feedback</th>
             </tr>
           </thead>
           <tbody>
-            {myClass.map((cls, index) => (
+            {createClass.map((cls, index) => (
               <tr key={cls._id}>
                 <td>{index + 1}</td>
                 <td>
@@ -51,30 +48,45 @@ const MyClasses = () => {
                   <h1 className="font-semibold">{cls.name}</h1>
                 </td>
                 <td>
-                  <h1 className="font-semibold">{cls.students}</h1>
+                  <h1 className="font-semibold">{cls.instructorName}</h1>
                 </td>
                 <td>
-                  <h1 className="font-semibold">{cls.status}</h1>
+                  <h1 className="font-semibold">{cls.instructorEmail}</h1>
+                </td>
+                <td>
+                  <h1 className="font-semibold">{cls.availableSeats}</h1>
+                </td>
+                <td>
+                  <h1 className="font-semibold">${cls.price}</h1>
+                </td>
+                <td>
+                  <h1 className="font-semibold text-center">{cls.status}</h1>
                 </td>
                 <td>
                   <div className="flex items-center justify-center gap-5">
                     <button
                       //   onClick={() => handleMakeAdmin(user)}
-                      title="Feedback"
+                      title="Approve"
                       //   disabled={disabledAdminButtonId === user._id}
                       className="p-3 bg-red-400 hover:bg-red-700 text-black hover:text-white transition duration-300 "
                     >
-                      {/* <FaUserShield /> */}
-                      <FaStickyNote></FaStickyNote>
+                      <FaCheckSquare></FaCheckSquare>
                     </button>
                     <button
                       //   onClick={() => handleMakeInstructor(user)}
-                      title="Update"
+                      title="Deny"
                       //   disabled={disabledInstructorButtonId === user._id}
                       className="p-3 bg-yellow-400 hover:bg-yellow-700 text-black hover:text-white transition duration-300 "
                     >
-                      {/* <FaUserTie /> */}
-                      <FaEdit></FaEdit>
+                      <FaBan></FaBan>
+                    </button>
+                    <button
+                      //   onClick={() => handleMakeInstructor(user)}
+                      title="Send Feedback"
+                      //   disabled={disabledInstructorButtonId === user._id}
+                      className="p-3 bg-green-500 hover:bg-green-700 text-black hover:text-white transition duration-300 "
+                    >
+                      <FaComment></FaComment>
                     </button>
                   </div>
                 </td>
@@ -87,4 +99,4 @@ const MyClasses = () => {
   );
 };
 
-export default MyClasses;
+export default ManageClass;

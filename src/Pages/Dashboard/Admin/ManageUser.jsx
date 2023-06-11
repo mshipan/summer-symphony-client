@@ -67,7 +67,7 @@ const ManageUser = () => {
   };
 
   return (
-    <div>
+    <div className="w-[75%] mx-auto">
       <Helmet>
         <title>Manage Users | Dashboard</title>
       </Helmet>
