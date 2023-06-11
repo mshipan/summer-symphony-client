@@ -17,7 +17,7 @@ const DashboardLayout = () => {
   const [roles] = useRoles();
   const isAdmin = roles?.isAdmin;
   const isStudent = roles?.isStudent;
-  // TODO: isInstructor
+  const isInstructor = roles?.isInstructor;
 
   return (
     <div className="drawer md:drawer-open lg:drawer-open">
@@ -64,6 +64,9 @@ const DashboardLayout = () => {
                   {isAdmin && <small className="italic">Admin Dashboard</small>}
                   {isStudent && (
                     <small className="italic">Student Dashboard</small>
+                  )}
+                  {isInstructor && (
+                    <small className="italic">Instructor Dashboard</small>
                   )}
                 </p>
               </li>
@@ -143,7 +146,34 @@ const DashboardLayout = () => {
             </>
           )}
 
-          {/* students */}
+          {isInstructor && (
+            <>
+              <li>
+                <NavLink
+                  to="add-a-class"
+                  className={({ isActive }) =>
+                    isActive
+                      ? " text-yellow-500 dashboardNav"
+                      : "md:text-black dashboardNav"
+                  }
+                >
+                  <FaRegListAlt /> Add a Class
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="my-classes"
+                  className={({ isActive }) =>
+                    isActive
+                      ? " text-yellow-500 dashboardNav"
+                      : "md:text-black dashboardNav"
+                  }
+                >
+                  <FaCheckSquare /> My Classes
+                </NavLink>
+              </li>
+            </>
+          )}
 
           <div className="divider"></div>
           <li>

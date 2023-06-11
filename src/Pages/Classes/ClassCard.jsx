@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useSelectClass from "../../Hooks/useSelectClass";
 
 const ClassCard = ({ classe }) => {
-  const { Image, Name, InstructorName, AvailableSeats, Price, _id } = classe;
+  const { image, name, instructorName, availableSeats, price, _id } = classe;
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -16,11 +16,11 @@ const ClassCard = ({ classe }) => {
     if (user && user.email) {
       const selectedClass = {
         classId: _id,
-        Name,
-        Image,
-        Price,
-        InstructorName,
-        AvailableSeats,
+        name,
+        image,
+        price,
+        instructorName,
+        availableSeats,
         email: user.email,
       };
       fetch("http://localhost:5000/selectClass", {
@@ -63,23 +63,23 @@ const ClassCard = ({ classe }) => {
     <div className="w-full md:w-96 lg:w-96 rounded-lg bg-base-200">
       <div className="overflow-hidden">
         <img
-          src={Image}
+          src={image}
           alt="Popular Class Image"
           className="rounded-t-lg h-48 md:h-60 lg:h-60 w-full transition duration-300 ease-in-out hover:scale-110"
         />
       </div>
       <div className="p-5">
         <h1 className="text-lg md:text-2xl lg:text-2xl font-extrabold md:font-bold lg:font-bold font-OpenSans mb-2">
-          {Name}
+          {name}
         </h1>
         <h3 className="text-base font-bold font-OpenSans mb-1">
-          Instructor: {InstructorName}
+          Instructor: {instructorName}
         </h3>
         <p className="text-base font-bold font-OpenSans mb-1">
-          Available seats: {AvailableSeats}
+          Available seats: {availableSeats}
         </p>
 
-        <p className="text-base font-bold font-OpenSans">Price: ${Price}</p>
+        <p className="text-base font-bold font-OpenSans">Price: ${price}</p>
       </div>
       <div className="flex w-full justify-center mb-5">
         <button
