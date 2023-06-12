@@ -27,7 +27,7 @@ const Payment = () => {
         </h1>
       </div>
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className="table shadow-xl rounded-none">
           {/* head */}
           <thead className="bg-[#c25934] text-white">
             <tr className="font-OpenSans">
@@ -69,7 +69,7 @@ const Payment = () => {
         </div>
       </div>
       <Elements stripe={stripePromise}>
-        <CheckOutForm price={price}></CheckOutForm>
+        <CheckOutForm filterdClass={filterdClass} price={price}></CheckOutForm>
       </Elements>
     </div>
   );

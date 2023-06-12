@@ -8,6 +8,7 @@ import {
   FaCheckSquare,
   FaUsersCog,
   FaChalkboardTeacher,
+  FaFileInvoiceDollar,
 } from "react-icons/fa";
 import useRoles from "../Hooks/useRoles";
 import useAuth from "../Hooks/useAuth";
@@ -141,6 +142,18 @@ const DashboardLayout = () => {
                   }
                 >
                   <FaCheckSquare /> My Enrolled Classes
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="my-payment-history"
+                  className={({ isActive }) =>
+                    isActive
+                      ? " text-yellow-500 dashboardNav"
+                      : "md:text-black dashboardNav"
+                  }
+                >
+                  <FaFileInvoiceDollar /> My Payment History
                 </NavLink>
               </li>
             </>

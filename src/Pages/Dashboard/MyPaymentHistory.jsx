@@ -1,16 +1,17 @@
 import { Helmet } from "react-helmet";
 import usePaymentHistory from "../../Hooks/usePaymentHistory";
 
-const MyEnrolledClass = () => {
+const MyPaymentHistory = () => {
   const [paymentData] = usePaymentHistory();
+
   return (
     <div className="w-[75%] mx-auto">
       <Helmet>
-        <title>My Enrolled Classes | Dashboard</title>
+        <title>My Payment History | Dashboard</title>
       </Helmet>
       <div className="my-8">
         <h1 className="text-4xl font-OpenSans font-bold text-center">
-          My Enrolled Classes
+          My Payments
         </h1>
       </div>
       <div className="overflow-x-auto">
@@ -21,9 +22,10 @@ const MyEnrolledClass = () => {
               <th>#</th>
               <th>Class Image</th>
               <th>Class Name</th>
-              <th>Instructor Name</th>
 
-              <th className="text-center">Enrolled Date</th>
+              <th>Customer Name</th>
+              <th>Price</th>
+              <th className="text-center">Successfully Payment Date</th>
             </tr>
           </thead>
           <tbody>
@@ -44,9 +46,11 @@ const MyEnrolledClass = () => {
                 </td>
 
                 <td>
-                  <h1 className="font-semibold">{pData.instructorName}</h1>
+                  <h1 className="font-semibold">{pData.name}</h1>
                 </td>
-
+                <td>
+                  <h1 className="font-semibold">${pData.price}</h1>
+                </td>
                 <td>
                   <h1 className="font-semibold text-center">
                     {new Date(pData.date).toLocaleDateString()}
@@ -61,4 +65,4 @@ const MyEnrolledClass = () => {
   );
 };
 
-export default MyEnrolledClass;
+export default MyPaymentHistory;

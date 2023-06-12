@@ -2,8 +2,10 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
+import { Link } from "react-router-dom";
+import "./CheckOutForm.css";
 
-const CheckOutForm = ({ price }) => {
+const CheckOutForm = ({ filterdClass, price }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [cardError, setCardError] = useState("");
@@ -13,9 +15,11 @@ const CheckOutForm = ({ price }) => {
   const { user } = useAuth();
   const [axiosSecure] = useAxiosSecure();
   useEffect(() => {
-    axiosSecure.post("/create-payment-intent", { price }).then((res) => {
-      setClientSecret(res.data.clientSecret);
-    });
+    if (price > 0) {
+      axiosSecure.post("/create-payment-intent", { price }).then((res) => {
+        setClientSecret(res.data.clientSecret);
+      });
+    }
   }, [price, axiosSecure]);
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -56,6 +60,23 @@ const CheckOutForm = ({ price }) => {
     setProcessing(false);
     if (paymentIntent.status === "succeeded") {
       setTransactionId(paymentIntent.id);
+      const payment = {
+        name: user?.displayName,
+        email: user?.email,
+        transactionId: paymentIntent.id,
+        price,
+        className: filterdClass.map((fclass) => fclass.name),
+        instructorName: filterdClass.map((fclass) => fclass.instructorName),
+        classId: filterdClass.map((fclass) => fclass._id),
+        classImage: filterdClass.map((fclass) => fclass.image),
+        date: new Date(),
+      };
+      axiosSecure.post("/payments", payment).then((res) => {
+        console.log(res.data);
+        if (res.data.result.insertedId) {
+          // display confirm
+        }
+      });
     }
   };
   return (
@@ -64,6 +85,11 @@ const CheckOutForm = ({ price }) => {
       {transactionId && (
         <p className="text-green-600">
           Payment successfull with transactionId: {transactionId}
+          <Link to="/dashboard/my-selected-classes">
+            <button className="bg-green-600 px-5 py-2 text-white ml-5">
+              Go Back to Your Classes
+            </button>
+          </Link>
         </p>
       )}
       <form className="mt-5" onSubmit={handleSubmit}>
