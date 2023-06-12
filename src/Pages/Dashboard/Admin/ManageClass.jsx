@@ -11,7 +11,7 @@ const ManageClass = () => {
   console.log(createClass);
 
   const handleApprove = (cls) => {
-    fetch(`http://localhost:5000/classes/${cls._id}`, {
+    fetch(`https://summer-symphony-server.vercel.app/classes/${cls._id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +37,7 @@ const ManageClass = () => {
   };
 
   const handleDeny = (cls) => {
-    fetch(`http://localhost:5000/classes/${cls._id}`, {
+    fetch(`https://summer-symphony-server.vercel.app/classes/${cls._id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

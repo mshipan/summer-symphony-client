@@ -23,7 +23,7 @@ const ClassCard = ({ classe }) => {
         availableSeats,
         email: user.email,
       };
-      fetch("http://localhost:5000/selectClass", {
+      fetch("https://summer-symphony-server.vercel.app/selectClass", {
         method: "POST",
         headers: {
           "content-type": "application/json",

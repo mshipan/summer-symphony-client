@@ -15,7 +15,7 @@ const ManageUser = () => {
     return res.data;
   });
   const handleMakeAdmin = (user) => {
-    fetch(`http://localhost:5000/users/${user._id}`, {
+    fetch(`https://summer-symphony-server.vercel.app/users/${user._id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -41,7 +41,7 @@ const ManageUser = () => {
   };
 
   const handleMakeInstructor = (user) => {
-    fetch(`http://localhost:5000/users/${user._id}`, {
+    fetch(`https://summer-symphony-server.vercel.app/users/${user._id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
