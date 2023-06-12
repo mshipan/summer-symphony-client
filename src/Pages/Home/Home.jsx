@@ -4,10 +4,11 @@ import PopularClasses from "./PopularClasses";
 import AboutSchool from "./AboutSchool";
 import PopularInstructors from "./PopularInstructors";
 import WhyChooseUs from "./WhyChooseUs";
+import { Fade } from "react-awesome-reveal";
 
 const Home = () => {
   return (
-    <div>
+    <Fade>
       <Helmet>
         <title>Home | Summer Symphony</title>
       </Helmet>
@@ -16,7 +17,7 @@ const Home = () => {
       <AboutSchool></AboutSchool>
       <PopularInstructors></PopularInstructors>
       <WhyChooseUs></WhyChooseUs>
-    </div>
+    </Fade>
   );
 };
 

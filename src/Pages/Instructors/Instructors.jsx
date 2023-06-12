@@ -1,11 +1,11 @@
 import { Helmet } from "react-helmet";
 import useInstructor from "../../Hooks/useInstructor";
 import InstructorCard from "./InstructorCard";
-
+import { Fade } from "react-awesome-reveal";
 const Instructors = () => {
   const [instructors] = useInstructor();
   return (
-    <div>
+    <Fade>
       <Helmet>
         <title>Instructors | Summer Symphony</title>
       </Helmet>
@@ -28,7 +28,7 @@ const Instructors = () => {
           ))}
         </div>
       </div>
-    </div>
+    </Fade>
   );
 };
 
