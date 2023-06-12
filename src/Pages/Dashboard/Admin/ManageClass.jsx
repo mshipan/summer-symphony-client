@@ -1,10 +1,67 @@
 import { Helmet } from "react-helmet";
 import useCreateClass from "../../../Hooks/useCreateClass";
 import { FaBan, FaCheckSquare, FaComment } from "react-icons/fa";
+import Swal from "sweetalert2";
+import { useState } from "react";
 
 const ManageClass = () => {
-  const [createClass] = useCreateClass();
+  const [disabledApproveButtonId, setDisabledApproveButtonId] = useState(null);
+  const [disabledDenyButtonId, setDisabledDenyButtonId] = useState(null);
+  const [createClass, refetch] = useCreateClass();
   console.log(createClass);
+
+  const handleApprove = (cls) => {
+    fetch(`http://localhost:5000/classes/${cls._id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ status: "Approved" }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${cls.name} is approved`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          refetch();
+          setDisabledApproveButtonId(cls._id);
+        }
+        setDisabledDenyButtonId(null);
+      });
+  };
+
+  const handleDeny = (cls) => {
+    fetch(`http://localhost:5000/classes/${cls._id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ status: "Denied" }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${cls.name} is Denied`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          refetch();
+          setDisabledDenyButtonId(cls._id);
+        }
+        setDisabledApproveButtonId(null);
+      });
+  };
+
   return (
     <div className="w-[75%] mx-auto">
       <Helmet>
@@ -65,17 +122,17 @@ const ManageClass = () => {
                 <td>
                   <div className="flex items-center justify-center gap-5">
                     <button
-                      //   onClick={() => handleMakeAdmin(user)}
+                      onClick={() => handleApprove(cls)}
                       title="Approve"
-                      //   disabled={disabledAdminButtonId === user._id}
+                      disabled={disabledApproveButtonId === cls._id}
                       className="p-3 bg-red-400 hover:bg-red-700 text-black hover:text-white transition duration-300 "
                     >
                       <FaCheckSquare></FaCheckSquare>
                     </button>
                     <button
-                      //   onClick={() => handleMakeInstructor(user)}
+                      onClick={() => handleDeny(cls)}
                       title="Deny"
-                      //   disabled={disabledInstructorButtonId === user._id}
+                      disabled={disabledDenyButtonId === cls._id}
                       className="p-3 bg-yellow-400 hover:bg-yellow-700 text-black hover:text-white transition duration-300 "
                     >
                       <FaBan></FaBan>

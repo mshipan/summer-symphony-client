@@ -1,11 +1,14 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import "./Navbar.css";
-import { AuthContext } from "../../Providers/AuthProvider";
+import useAuth from "../../Hooks/useAuth";
+import useRoles from "../../Hooks/useRoles";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut } = useAuth();
+  const [roles] = useRoles();
+  const { isAdmin, isStudent, isInstructor } = roles ?? {};
 
   const handleLogOut = () => {
     logOut()
@@ -51,20 +54,28 @@ const Navbar = () => {
           Classes
         </NavLink>
       </li>
-      {user && (
-        <li>
-          <NavLink
-            className={({ isActive }) =>
-              isActive
-                ? "text-yellow-500 navLinkClass"
-                : "md:text-white navLinkClass"
-            }
-            to="/dashboard"
-          >
-            Dashboard
-          </NavLink>
-        </li>
-      )}
+
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "text-yellow-500 navLinkClass"
+              : "md:text-white navLinkClass"
+          }
+          to={
+            isStudent
+              ? "/dashboard/student-home"
+              : isInstructor
+              ? "/dashboard/instructor-home"
+              : isAdmin
+              ? "/dashboard/admin-home"
+              : "/dashboard"
+          }
+        >
+          Dashboard
+        </NavLink>
+      </li>
+
       {user ? (
         <>
           <li className="hidden md:block lg:block">
