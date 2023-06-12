@@ -26,7 +26,7 @@ const CheckOutForm = ({ price }) => {
     if (card === null) {
       return;
     }
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    const { error } = await stripe.createPaymentMethod({
       type: "card",
       card,
     });
@@ -89,7 +89,7 @@ const CheckOutForm = ({ price }) => {
             type="submit"
             disabled={!stripe || !clientSecret || processing}
           >
-            Pay
+            Pay Now
           </button>
         </div>
       </form>

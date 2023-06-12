@@ -16,7 +16,7 @@ const PopularClasses = () => {
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5">
-        {classes.map((popularClass) => (
+        {classes.slice(0, 6).map((popularClass) => (
           <PopularClassesCard
             key={popularClass._id}
             popularClass={popularClass}
